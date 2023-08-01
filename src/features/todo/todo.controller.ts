@@ -6,12 +6,14 @@ import {
   Put,
   Param,
   Delete,
+  Res,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { Response } from 'express';
 
-@Controller('todo')
+@Controller('todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
@@ -26,17 +28,21 @@ export class TodoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+  findOne(@Param('id') id: string, @Res() res: Response) {
+    return this.todoService.findOne(+id, res);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.todoService.update(+id, updateTodoDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateTodoDto: UpdateTodoDto,
+    @Res() res: Response,
+  ) {
+    return this.todoService.update(+id, updateTodoDto, res);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todoService.remove(+id);
+  remove(@Param('id') id: string, @Res() res: Response) {
+    return this.todoService.remove(+id, res);
   }
 }

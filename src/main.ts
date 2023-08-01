@@ -21,6 +21,7 @@ const initSwaggerSpec = (app: INestApplication): void => {
  */
 async function bootstrap() {
   const app: INestApplication = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api/v1');
   initSwaggerSpec(app);
   await app.listen(3000);
 }

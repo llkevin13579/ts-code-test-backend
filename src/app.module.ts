@@ -5,7 +5,7 @@ import { TodoModule } from './features/todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot(), TodoModule],
+  imports: [TodoModule, ConfigModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
