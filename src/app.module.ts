@@ -5,7 +5,12 @@ import { TodoModule } from './features/todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [TodoModule, ConfigModule.forRoot()],
+  imports: [
+    TodoModule,
+    ConfigModule.forRoot({
+      envFilePath: [`.env.${process.env.ENV ?? 'local'}`],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
