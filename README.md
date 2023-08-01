@@ -48,7 +48,7 @@ npm run start:dev
 
 Running in debug mode:
 ```
-npm run 
+npm run start:debug
 ```
 
 # Running Service In the Server
