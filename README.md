@@ -18,6 +18,7 @@ docker run --rm \
     -e POSTGRES_DB=postgres \
     -p 5432:5432 \
     -v pgdb-vol:/var/lib/postgresql/data \
+    -d \
     postgres
 ```
 

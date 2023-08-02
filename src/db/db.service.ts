@@ -7,10 +7,10 @@ export class DbService {
 
   constructor() {
     this.client = new Client({
-      user: process.env.PG_USERNAME ?? 'admin',
+      user: process.env.PG_USERNAME ?? 'postgres',
       host: process.env.PG_HOST ?? '127.0.0.1',
       database: process.env.PG_DATABASE ?? 'postgres',
-      password: process.env.PG_PASSWORD ?? 'ABcd1234!',
+      password: process.env.PG_PASSWORD ?? 'Password',
       port: Number(process.env.PG_PORT ?? '5432'),
     });
     this.client.connect();
