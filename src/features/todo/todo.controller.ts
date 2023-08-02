@@ -6,7 +6,6 @@ import {
   Put,
   Param,
   Delete,
-  Res,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TodoService } from './todo.service';

@@ -1,4 +1,4 @@
-import { Injectable, Res, HttpStatus, HttpException } from '@nestjs/common';
+import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { DbService } from '../../db/db.service';
