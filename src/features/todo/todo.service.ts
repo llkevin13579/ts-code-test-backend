@@ -31,7 +31,6 @@ export class TodoService {
 
   async findOne(id: number, @Res() res: Response): Promise<void> {
     const result: Todo[] = await this.queryById(id);
-    console.log('result:', result);
     if (result && result.length === 1) {
       res.status(HttpStatus.OK).send(result[0]);
     }
