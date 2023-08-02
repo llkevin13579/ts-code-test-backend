@@ -116,3 +116,6 @@ Running with debug mode
 ```
 npm run test:debug
 ```
+
+# API Specification
+If you want to check Swagger API spec, please visit ``/api`` in your browser after running the project.

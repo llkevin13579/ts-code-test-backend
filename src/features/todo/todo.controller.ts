@@ -8,31 +8,58 @@ import {
   Delete,
   Res,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Response } from 'express';
+import { ApiResponse } from '@nestjs/swagger';
 
+@ApiTags('Todo')
 @Controller('todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
+  @ApiResponse({
+    status: 201,
+    description: 'The record is successfully created.',
+  })
   create(@Body() createTodoDto: CreateTodoDto) {
     return this.todoService.create(createTodoDto);
   }
 
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'All records have already retrieved.',
+  })
   findAll() {
     return this.todoService.findAll();
   }
 
   @Get(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'Current record has already retrieved.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Current record could not be found.',
+  })
   findOne(@Param('id') id: string, @Res() res: Response) {
     return this.todoService.findOne(+id, res);
   }
 
   @Put(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'Current record has already updated.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Current record could not be found.',
+  })
   update(
     @Param('id') id: string,
     @Body() updateTodoDto: UpdateTodoDto,
@@ -42,6 +69,14 @@ export class TodoController {
   }
 
   @Delete(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'Current record has already deleted.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Current record could not be found.',
+  })
   remove(@Param('id') id: string, @Res() res: Response) {
     return this.todoService.remove(+id, res);
   }
