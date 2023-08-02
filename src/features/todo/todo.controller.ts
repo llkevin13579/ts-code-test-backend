@@ -30,6 +30,10 @@ export class TodoController {
     description:
       'Title field is not included in the payload./Title is not string format./Title length should between 1 and 100',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error',
+  })
   create(@Body() createTodoDto: CreateTodoDto) {
     return this.todoService.create(createTodoDto);
   }
@@ -38,6 +42,10 @@ export class TodoController {
   @ApiResponse({
     status: 200,
     description: 'All records have already retrieved.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error',
   })
   findAll() {
     return this.todoService.findAll();
@@ -51,6 +59,10 @@ export class TodoController {
   @ApiResponse({
     status: 404,
     description: 'Current record could not be found.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error',
   })
   findOne(@Param('id') id: string, @Res() res: Response) {
     return this.todoService.findOne(+id, res);
@@ -70,6 +82,10 @@ export class TodoController {
     description:
       'Title field is not included in the payload./Title is not string format./Title length should between 1 and 100',
   })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error',
+  })
   update(
     @Param('id') id: string,
     @Body() updateTodoDto: UpdateTodoDto,
@@ -86,6 +102,10 @@ export class TodoController {
   @ApiResponse({
     status: 404,
     description: 'Current record could not be found.',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal Server Error',
   })
   remove(@Param('id') id: string, @Res() res: Response) {
     return this.todoService.remove(+id, res);

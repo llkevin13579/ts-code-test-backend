@@ -14,6 +14,11 @@ export class DbService {
       port: Number(process.env.PG_PORT ?? '5432'),
     });
     this.client.connect();
+    this.client.on('error', (err) => {
+      console.error('Something bad has happened on database.', err.stack);
+      this.client.end();
+      process.exit(1);
+    });
   }
 
   public query(sql: string, values: Array<any>): Promise<any> {
