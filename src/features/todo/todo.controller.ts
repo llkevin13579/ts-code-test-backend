@@ -12,8 +12,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import { Response } from 'express';
 import { ApiResponse } from '@nestjs/swagger';
+import { Todo } from './entities/todo.entity';
 
 @ApiTags('Todo')
 @Controller('todos')
@@ -64,8 +64,8 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  findOne(@Param('id') id: string, @Res() res: Response) {
-    return this.todoService.findOne(+id, res);
+  findOne(@Param('id') id: string): Promise<Todo | void> {
+    return this.todoService.findOne(+id);
   }
 
   @Put(':id')
@@ -86,12 +86,8 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  update(
-    @Param('id') id: string,
-    @Body() updateTodoDto: UpdateTodoDto,
-    @Res() res: Response,
-  ) {
-    return this.todoService.update(+id, updateTodoDto, res);
+  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
+    return this.todoService.update(+id, updateTodoDto);
   }
 
   @Delete(':id')
@@ -107,7 +103,7 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  remove(@Param('id') id: string, @Res() res: Response) {
-    return this.todoService.remove(+id, res);
+  remove(@Param('id') id: string) {
+    return this.todoService.remove(+id);
   }
 }
