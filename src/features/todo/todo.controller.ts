@@ -25,6 +25,11 @@ export class TodoController {
     status: 201,
     description: 'The record is successfully created.',
   })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Title field is not included in the payload./Title is not string format./Title length should between 1 and 100',
+  })
   create(@Body() createTodoDto: CreateTodoDto) {
     return this.todoService.create(createTodoDto);
   }
@@ -59,6 +64,11 @@ export class TodoController {
   @ApiResponse({
     status: 404,
     description: 'Current record could not be found.',
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      'Title field is not included in the payload./Title is not string format./Title length should between 1 and 100',
   })
   update(
     @Param('id') id: string,
