@@ -22,9 +22,12 @@ const initSwaggerSpec = (app: INestApplication): void => {
 async function bootstrap() {
   const app: INestApplication = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v1');
+  app.enableCors({
+    origin: [process.env.FRONTEND_HOST ?? 'http://localhost:3000'],
+  });
   app.useGlobalPipes(new ValidationPipe());
   initSwaggerSpec(app);
-  await app.listen(3000);
+  await app.listen(4200);
 }
 
 bootstrap();

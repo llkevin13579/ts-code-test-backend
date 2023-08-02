@@ -26,7 +26,7 @@ export class TodoService {
    * @returns Status code 200 with todo array when find all todo records successfully.
    */
   async findAll(): Promise<Todo[]> {
-    const sql = 'select * from todos';
+    const sql = 'select * from todos order by id';
     const result = await this.db.query(sql, []);
     return result;
   }

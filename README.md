@@ -81,6 +81,7 @@ docker run --rm \
     -e PG_DATABASE=PROD_DATABASE \
     -e PG_USERNAME=PROD_USERNAME \
     -e PG_PASSWORD=PROd_PASSWORD \
+    -e FRONTEND_HOST=www.domain.com \
     -d \
     ts-code-test-backend:latest
 ```
