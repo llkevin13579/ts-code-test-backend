@@ -7,11 +7,10 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import { ApiResponse } from '@nestjs/swagger';
 import { Todo } from './entities/todo.entity';
 
 @ApiTags('Todo')
@@ -46,7 +45,7 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  findAll() {
+  findAll(): Promise<Todo[]> {
     return this.todoService.findAll();
   }
 
@@ -85,7 +84,10 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateTodoDto: UpdateTodoDto,
+  ): Promise<void> {
     return this.todoService.update(+id, updateTodoDto);
   }
 
@@ -102,7 +104,7 @@ export class TodoController {
     status: 500,
     description: 'Internal Server Error',
   })
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string): Promise<void> {
     return this.todoService.remove(+id);
   }
 }

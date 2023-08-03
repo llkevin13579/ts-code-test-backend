@@ -5,7 +5,6 @@ import { TodoController } from './todo.controller';
 import { DbModule } from '../../db/db.module';
 import mockTodoData from '../../db/mock/mockTodoData';
 import { Todo } from './entities/todo.entity';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
 describe('TodoService', () => {
   let todoService: TodoService;
@@ -13,7 +12,7 @@ describe('TodoService', () => {
   let mockData: Todo[];
   let allResult: Todo[] = [];
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [DbModule],
       controllers: [TodoController],
@@ -25,7 +24,7 @@ describe('TodoService', () => {
     mockData = mockTodoData();
   });
 
-  it('create', async () => {
+  it('create', async (): Promise<void> => {
     jest.spyOn(todoController, 'create').mockImplementation(async () => {
       return;
     });
@@ -35,7 +34,7 @@ describe('TodoService', () => {
     expect(createResult).toEqual(undefined);
   });
 
-  it('findAll', async () => {
+  it('findAll', async (): Promise<void> => {
     jest.spyOn(todoController, 'findAll').mockImplementation(async () => {
       return mockData;
     });
@@ -43,7 +42,7 @@ describe('TodoService', () => {
     expect(allResult.length).toBeGreaterThan(0);
   });
 
-  it('findOne(normal)', async () => {
+  it('findOne(normal)', async (): Promise<void> => {
     const mockData: Todo = { id: allResult[0].id, title: allResult[0].title };
     jest.spyOn(todoController, 'findOne').mockImplementation(async () => {
       return mockData;
@@ -54,7 +53,7 @@ describe('TodoService', () => {
     }
   });
 
-  it('findOne(404)', async () => {
+  it('findOne(404)', async (): Promise<void> => {
     const mockData: Todo = { id: allResult[0].id, title: allResult[0].title };
     jest.spyOn(todoController, 'findOne').mockImplementation(async () => {
       return mockData;
@@ -65,7 +64,7 @@ describe('TodoService', () => {
     expect(result).toHaveProperty('error');
   });
 
-  it('update(normal)', async () => {
+  it('update(normal)', async (): Promise<void> => {
     jest.spyOn(todoController, 'update').mockImplementation(async () => {
       return;
     });
@@ -75,7 +74,7 @@ describe('TodoService', () => {
     expect(result).toBe(undefined);
   });
 
-  it('update(normal)', async () => {
+  it('update(normal)', async (): Promise<void> => {
     jest.spyOn(todoController, 'update').mockImplementation(async () => {
       return;
     });
@@ -87,7 +86,7 @@ describe('TodoService', () => {
     expect(result).toHaveProperty('error');
   });
 
-  it('remove', async () => {
+  it('remove', async (): Promise<void> => {
     jest.spyOn(todoController, 'remove').mockImplementation(async () => {
       return;
     });
@@ -95,7 +94,7 @@ describe('TodoService', () => {
     expect(result).toBe(undefined);
   });
 
-  it('remove(404)', async () => {
+  it('remove(404)', async (): Promise<void> => {
     jest.spyOn(todoController, 'remove').mockImplementation(async () => {
       return;
     });

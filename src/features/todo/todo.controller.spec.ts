@@ -6,12 +6,12 @@ import { DbModule } from '../../db/db.module';
 import mockTodoData from '../../db/mock/mockTodoData';
 import { Todo } from '../../features/todo/entities/todo.entity';
 
-describe('TodoController', () => {
+describe('TodoController', (): void => {
   let todoController: TodoController;
   let todoService: TodoService;
   let mockData: Todo[];
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [DbModule],
       controllers: [TodoController],
@@ -23,7 +23,7 @@ describe('TodoController', () => {
     mockData = mockTodoData();
   });
 
-  it('create', async () => {
+  it('create', async (): Promise<void> => {
     const spy = jest
       .spyOn(todoService, 'create')
       .mockImplementation(async () => {
@@ -36,7 +36,7 @@ describe('TodoController', () => {
     expect(result).toEqual(undefined);
   });
 
-  it('findAll', async () => {
+  it('findAll', async (): Promise<void> => {
     const spy = jest
       .spyOn(todoService, 'findAll')
       .mockImplementation(async () => {
@@ -47,7 +47,7 @@ describe('TodoController', () => {
     expect(result).toEqual(mockData);
   });
 
-  it('findOne', async () => {
+  it('findOne', async (): Promise<void> => {
     const spy = jest
       .spyOn(todoService, 'findOne')
       .mockImplementation(async () => {
@@ -58,7 +58,7 @@ describe('TodoController', () => {
     expect(result).toEqual(mockData[0]);
   });
 
-  it('update', async () => {
+  it('update', async (): Promise<void> => {
     const spy = jest
       .spyOn(todoService, 'update')
       .mockImplementation(async () => {
@@ -69,7 +69,7 @@ describe('TodoController', () => {
     expect(result).toEqual(undefined);
   });
 
-  it('remove', async () => {
+  it('remove', async (): Promise<void> => {
     const spy = jest
       .spyOn(todoService, 'remove')
       .mockImplementation(async () => {

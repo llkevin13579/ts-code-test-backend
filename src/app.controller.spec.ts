@@ -4,10 +4,10 @@ import { AppService } from './app.service';
 import { TodoModule } from './features/todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
 
-describe('AppController', () => {
+describe('AppController', (): void => {
   let appController: AppController;
 
-  beforeEach(async () => {
+  beforeEach(async (): Promise<void> => {
     const app: TestingModule = await Test.createTestingModule({
       imports: [TodoModule, ConfigModule.forRoot()],
       controllers: [AppController],
@@ -17,8 +17,8 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
+  describe('root', (): void => {
+    it('should return "Hello World!"', (): void => {
       expect(appController.getHello()).toBe('Hello World!');
     });
   });
