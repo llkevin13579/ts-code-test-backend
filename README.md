@@ -1,10 +1,12 @@
 # Introduction
 Create an end-to-end web application that allows the user to read, create and delete a to-do list of duties of any kind. This project is for backend.
 
+If you are interested in frontend project, please refer to the [Github Repo](https://github.com/llkevin13579/ts-code-test-frontend).
+
 # Prerequisites
 (1) Please make sure [Docker]([https://www.docker.com/]) has already installed in your computer. 
 
-(2) [Node.js](https://nodejs.org/en)(Version>=16) is install on your operating system.
+(2) [Node.js](https://nodejs.org/en)(Version>=16) installed on your operating system.
 
 # Init Database and Table
 ## Setup Database
@@ -72,16 +74,26 @@ docker build -f Dockerfile.ENV_NAME -t ts-code-test-backend:latest .
 ```
 
 ## Run Docker Container
+For production
 ``` 
 docker run --rm \
     --name ts-code-test-backend \
-    -p 3000:3000 \
+    -p 4200:4200 \
     -e PG_HOST=PROD_HOST \
     -e PG_PORT=PROD_PORT \
     -e PG_DATABASE=PROD_DATABASE \
     -e PG_USERNAME=PROD_USERNAME \
     -e PG_PASSWORD=PROd_PASSWORD \
     -e FRONTEND_HOST=www.domain.com \
+    -d \
+    ts-code-test-backend:latest
+```
+
+For non-production
+``` 
+docker run --rm \
+    --name ts-code-test-backend \
+    -p 4200:4200 \
     -d \
     ts-code-test-backend:latest
 ```

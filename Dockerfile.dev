@@ -3,5 +3,4 @@ EXPOSE 3000:3000
 WORKDIR /app
 COPY . /app
 RUN npm install
-RUN npm run build:qa
-CMD ["npm", "run", "start:qa"]
+CMD ["npm", "run", "start:dev"]
